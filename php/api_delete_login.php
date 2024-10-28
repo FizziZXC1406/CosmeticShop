@@ -7,15 +7,15 @@ if ((int) $row['total'] > 0) {
     $sql = "delete from users set username='" . $username . "'";
     if (mysqli_query($conn, $sql)) {
         if (mysqli_affected_rows($conn) > 0) {
-            $res["success"] = 1;//update thành công
+            $res["success"] = 1;
         } else {
-            $res["success"] = 0;//update thất bại
+            $res["success"] = 0;
         }
     } else {
-        $res["success"] = 0;//update thất bại
+        $res["success"] = 0;
     }
 } else {
-    $res["success"] = 2;//Username không tồn tại trong csdl
+    $res["success"] = 2;
 }
 echo json_encode($res);
 mysqli_close($conn);

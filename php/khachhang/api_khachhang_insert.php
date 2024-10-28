@@ -1,18 +1,16 @@
 <?php
 require_once(__DIR__ . "/../server.php");
 
-// Lấy dữ liệu từ POST
 $makh = $_POST['MAKH'];
 $hotenkh = $_POST['HOTENKH'];
 $phaikh = $_POST['PHAIKH'];
-$ntnskh = $_POST['NTNSKH']; // Ngày tháng năm sinh
-$cccdkh = $_POST['CCCDKH']; // Số chứng minh thư
-$sdtkh = $_POST['SĐTKH']; // Số điện thoại
+$ntnskh = $_POST['NTNSKH'];
+$cccdkh = $_POST['CCCDKH'];
+$sdtkh = $_POST['SĐTKH'];
 $emailkh = $_POST['GMAILKH'];
-$dckh = $_POST['ĐCKH']; // Địa chỉ
+$dckh = $_POST['ĐCKH'];
 $maloaikh = $_POST['MALOAIKH'];
 
-// Kiểm tra xem mã khách hàng đã tồn tại chưa
 $stmt = $conn->prepare("SELECT COUNT(*) AS total FROM khachhang WHERE makh = ?");
 $stmt->bind_param("s", $makh);
 $stmt->execute();
@@ -20,20 +18,21 @@ $result = $stmt->get_result();
 $row = $result->fetch_array();
 
 if ((int) $row['total'] > 0) {
-    $res["success"] = 2; // Mã khách hàng đã tồn tại
+    $res["success"] = 2;
 } else {
-    // Thực hiện câu lệnh INSERT
-    $stmt = $conn->prepare("INSERT INTO khachhang (makh, hotenkh, phaikh, ntnskh, cccdkh, sđtkh, gmailkh, đckh, maloaikh) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    $stmt = $conn->prepare("INSERT INTO khachhang (makh, hotenkh, phaikh, ntnskh, cccdkh, sđtkh, gmailkh, đckh, maloaikh) 
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssssss", $makh, $hotenkh, $phaikh, $ntnskh, $cccdkh, $sdtkh, $emailkh, $dckh, $maloaikh);
 
     if ($stmt->execute()) {
         if ($stmt->affected_rows > 0) {
-            $res["success"] = 1; // Thành công
+            $res["success"] = 1;
         } else {
-            $res["success"] = 0; // Không có dòng nào bị ảnh hưởng
+            $res["success"] = 0;
         }
     } else {
-        $res["success"] = 0; // Lỗi khi thực thi câu lệnh SQL
+        $res["success"] = 0;
     }
 }
 

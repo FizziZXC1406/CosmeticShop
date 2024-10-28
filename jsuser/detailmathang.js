@@ -2,7 +2,6 @@ $(document).ready(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const mamh = urlParams.get('mamh');
-    console.log("Lấy Mã Mặt Hàng Từ Trang Index: ", mamh);
 
     if (mamh) {
         var url = "http://localhost:1408/CosmeticsShop/php/api_get_mathang_theomamathang.php?MAMH=" + mamh;
@@ -10,14 +9,12 @@ $(document).ready(function () {
         queryData_GET(url, {}, function (res) {
             console.log("API Response: ", res);
 
-            // *TODO: Kiểm tra và hiển thị Chi Tiết Sản Phẩm
             if (res && res.mamathang) {
                 buildsHTML_DETAIL(res);
             } else {
                 console.error("Không tìm thấy sản phẩm hiện tại trong response:", res);
             }
 
-            // *TODO: Kiểm tra và hiển thị Sản Phẩm Tương Tự
             if (res && res.mamathangtuongtu) {
                 buildsHTML_SANPHAMTUONGTU(res);
             } else {
@@ -25,7 +22,6 @@ $(document).ready(function () {
             }
 
             if (res && res.maumathang) {
-                console.log("\nCHẠY THÀNH CÔNG ĐIỀU KIỆN MÀU MẶT HÀNG", buildsHTML_MAUMATHANG(res));
                 buildsHTML_MAUMATHANG(res);
             } else {
                 console.error("Không tìm thấy Màu Mặt Hàng trong response:", res);
@@ -87,17 +83,6 @@ function buildsHTML_DETAIL(res) {
     $(".contentDescription").html(htmlMoTa);
     $(".price").html(htmlGiaDVT);
 }
-// DETAIL - end
-
-// MÀU MẶT HÀNG - start
-// function builds_MAUMATHANG() {
-//     var dataSend = {
-//     }
-//     queryData_GET("http://localhost:1408/CosmeticsShop/php/api_get_nhom.php", dataSend, function (res) {
-//         console.log(res);
-//         buildsHTML_MAUMATHANG(res);
-//     });
-// }
 
 function buildsHTML_MAUMATHANG(res) {
     var data = res.maumathang;
@@ -117,19 +102,6 @@ function buildsHTML_MAUMATHANG(res) {
     }
     $(".containerColorRadioButton").html(html);
 }
-// MÀU MẶT HÀNG - end
-
-// TODO: SẢN PHẨM TƯƠNG TỰ - Start
-// function builds_SANPHAMTUONGTU() {
-//     var dataSend = {
-//     }
-//     console.log("SẢN PHẨM TƯƠNG TỰ Ở ĐÂY");
-
-//     queryData_GET("http://localhost:1408/CosmeticsShop/php/api_get_mathang_theomamathang.php", dataSend, function (res) {
-//         console.log("SẢN PHẨM TƯƠNG TỰ Ở ĐÂY", res);
-//         buildsHTML_SANPHAMTUONGTU(res);
-//     });
-// }
 
 function buildsHTML_SANPHAMTUONGTU(res) {
     var data = res.mamathangtuongtu;
@@ -146,7 +118,7 @@ function buildsHTML_SANPHAMTUONGTU(res) {
     for (var item in data) {
         var list = data[item];
         var imageSrc = '';
-        var formattedPrice = ''; // Khởi tạo giá trị rỗng
+        var formattedPrice = '';
 
         if (list.HINHANH) {
             imageSrc = 'data:image/jpeg;base64,' + list.HINHANH;
@@ -172,4 +144,3 @@ function buildsHTML_SANPHAMTUONGTU(res) {
     }
     $(".containerSimilarProducts").html(html);
 }
-// TODO: SẢN PHẨM TƯƠNG TỰ - end

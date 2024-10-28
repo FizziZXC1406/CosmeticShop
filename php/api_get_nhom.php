@@ -9,7 +9,6 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'options') {
 
 require_once("server.php");
 
-// NHÓM MẶT HÀNG
 $sql_nhommathang = "SELECT * FROM `nhommathang`";
 $rs_nhommathang = mysqli_query($conn, $sql_nhommathang);
 $mang_nhommathang = array();
@@ -20,7 +19,6 @@ while ($rows = mysqli_fetch_array($rs_nhommathang)) {
 }
 $jsondata['nhommathang'] = $mang_nhommathang;
 
-// NHÃN HÀNG
 $sql_nhanhang = "SELECT MANHANHANG, TENNHANHANG, HINHANH FROM `NHANHANG`";
 $rs_nhanhang = mysqli_query($conn, $sql_nhanhang); 
 $mang_nhanhang = array();
@@ -32,7 +30,6 @@ while ($rows = mysqli_fetch_array($rs_nhanhang)) {
 }
 $jsondata['nhanhang'] = $mang_nhanhang;
 
-// MẶT HÀNG
 $sql_mathang = "SELECT * FROM `mathang` WHERE MAMH = 'MH00001'";
 $rs_mathang = mysqli_query($conn, $sql_mathang);
 $mang_mathang = array();
@@ -47,7 +44,6 @@ while ($rows = mysqli_fetch_array($rs_mathang)) {
 }
 $jsondata['mathang'] = $mang_mathang;
 
-// MÀU MẶT HÀNG
 $sql_maumathang = "SELECT MAMAU, TENMAU, HINHANHMAU FROM `maumathang` WHERE MAMH = 'MH00001'";
 $rs_maumathang = mysqli_query($conn, $sql_maumathang);
 $mang_maumathang = array();
@@ -59,7 +55,6 @@ while ($rows = mysqli_fetch_array($rs_maumathang)) {
 }
 $jsondata['maumathang'] = $mang_maumathang;
 
-// SẢN PHẨM TƯƠNG TỰ
 $sql_tuongtu = "SELECT TENMH, GIA, ĐVT, HINHANH FROM `mathang` WHERE MANHOMMH = 'ST1'";
 $rs_tuongtu = mysqli_query($conn, $sql_tuongtu);
 $mang_tuongtu = array();
@@ -71,7 +66,6 @@ while ($rows = mysqli_fetch_array($rs_tuongtu)) {
     array_push($mang_tuongtu, $usertemp);
 }
 $jsondata['tuongtu'] = $mang_tuongtu;
-
 
 echo json_encode($jsondata);
 mysqli_close($conn);

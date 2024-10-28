@@ -12,7 +12,6 @@ function queryData_GET(url, dataSend, callback) {
     });
 }
 
-
 function queryData_POST(url, dataSend, callback) {
     $.ajax({
         type: 'POST',

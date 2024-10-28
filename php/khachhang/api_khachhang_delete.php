@@ -1,29 +1,25 @@
 <?php
 require_once(__DIR__ . "/../server.php");
 
-// Lấy dữ liệu từ POST
 $makh = $_POST['MAKH'];
 
-// Kiểm tra xem mã khách hàng có được cung cấp không
 if (!empty($makh)) {
-    // Tạo câu lệnh SQL DELETE
     $sql = "DELETE FROM khachhang WHERE makh = ?";
     $stmt = $conn->prepare($sql);
     
-    // Liên kết tham số
     $stmt->bind_param("s", $makh);
 
     if ($stmt->execute()) {
         if ($stmt->affected_rows > 0) {
-            $res["success"] = 1; // Xóa thành công
+            $res["success"] = 1;
         } else {
-            $res["success"] = 0; // Không có dòng nào bị ảnh hưởng (mã khách hàng không tồn tại)
+            $res["success"] = 0;
         }
     } else {
-        $res["success"] = 0; // Lỗi khi thực thi câu lệnh SQL
+        $res["success"] = 0;
     }
 } else {
-    $res["success"] = 2; // Mã khách hàng không được cung cấp
+    $res["success"] = 2;
 }
 
 echo json_encode($res);

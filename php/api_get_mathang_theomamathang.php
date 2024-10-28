@@ -10,13 +10,11 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'options') {
 
 require_once("server.php");
 
-// *TODO: Kiểm tra lấy MAMH thành công hay không
 $mamh = isset($_GET["MAMH"]) ? $_GET["MAMH"] : null;
 if (!$mamh || !is_string($mamh)) {
     echo json_encode(array('error' => 'Invalid MAMH value'));
     exit();
 }
-// *TODO: Truy vấn sản phẩm hiện tại và MANHOMMH
 $sql = "SELECT * FROM `mathang`, `nhommathang` WHERE mathang.MANHOMMH = nhommathang.MANHOMMH AND mathang.MAMH = '$mamh'";
 $rs = mysqli_query($conn, $sql);
 if (!$rs) {
@@ -45,7 +43,6 @@ if (!$manhommh) {
 }
 $jsondata['mamathang'] = $mang;
 
-// *TODO: Truy vấn lấy các MÀU MẶT HÀNG của MAMH
 $sql_maumathang = " SELECT maumathang.MAMH, maumathang.TENMAU, maumathang.HINHANHMAU FROM `maumathang`, `mathang` 
                     WHERE maumathang.MAMH = mathang.MAMH 
                     AND mathang.MAMH = '$mamh'";
@@ -68,8 +65,6 @@ if (!$manhommh) {
 }
 $jsondata['maumathang'] = $mang_maumathang;
 
-
-// *TODO: Truy vấn các sản phẩm tương tự
 $sql_related = "SELECT * FROM `mathang` WHERE MANHOMMH = '$manhommh' AND MAMH != '$mamh'";
 $rs_related = mysqli_query($conn, $sql_related);
 if (!$rs_related) {

@@ -55,7 +55,6 @@ $(document).ready(function () {
         var ma = $(this).attr("data-manhom");
         var vt = $(this).attr("data-vitri");
 
-
         var dataSend = {
             manhom: ma,
             vt: vt
@@ -124,7 +123,6 @@ $(document).ready(function () {
         });
     });
 });
-
 
 function showAllDataProductByPrice(s, dau) {
     var dataSend = {
@@ -236,7 +234,6 @@ function buildsHTML_SHOWMATHANG(res) {
     $(".addItemMatHang").html(html);
 }
 
-
 function builds_NHOMMATHANG() {
     var dataSend = {
     }
@@ -324,119 +321,3 @@ function buildsHTML_Type(res) {
     }
     $(".addType").html(html)
 }
-// function builds_DETAIL() {
-//     var dataSend = {
-//     }
-//     queryData_GET("http://localhost:1408/CosmeticsShop/php/api_get_nhom.php", dataSend, function (res) {
-//         buildsHTML_DETAIL(res);
-//     });
-// }
-
-// function buildsHTML_DETAIL(res) {
-//     var data = res.mathang;
-//     var htmlHinhAnh = '';
-//     var htmlTenSon = '';
-//     var htmlGia = '';
-//     var htmlDVT = '';
-//     var htmlMoTa = '';
-//     for (var i = 0; i < data.length; i++) {
-//         var list = data[i];
-//         var imageSrc = '';
-//         if (list.HINHANH) {
-//             imageSrc = 'data:image/jpeg;base64,' + list.HINHANH;
-//             htmlHinhAnh += `<div class="containerIMG">
-//                         <img src="${imageSrc}" alt="">
-//                     </div>`;
-//         }
-
-//         if (list.TENMH) {
-//             htmlTenSon += ` <label>${list.TENMH}</label>`
-//         }
-
-//         if (list.MOTA) {
-//             htmlMoTa += `<p>${list.MOTA}</p>`
-//         }
-
-//         if (list.GIA) {
-//             htmlGia += `${list.GIA}`
-//         }
-
-//         if (list.ĐVT) {
-//             htmlDVT += `${list.ĐVT}`
-//         }
-//     }
-//     var htmlGiaDVT = `<span>${htmlGia}</span>
-//                             <span>${htmlDVT}</span>`
-//     $(".addProductDetails").html(htmlHinhAnh);
-//     $(".name").html(htmlTenSon);
-//     $(".contentDescription").html(htmlMoTa);
-//     $(".price").html(htmlGiaDVT);
-// }
-
-// MAUMATHANG - start
-// function builds_MAUMATHANG() {
-//     var dataSend = {
-//     }
-//     queryData_GET("http://localhost:1408/CosmeticsShop/php/api_get_nhom.php", dataSend, function (res) {
-//         buildsHTML_MAUMATHANG(res);
-//     });
-// }
-
-// function buildsHTML_MAUMATHANG(res) {
-//     var data = res.maumathang;
-//     var html = '';
-
-//     for (var item in data) {
-//         var list = data[item];
-//         var imageSrc = '';
-//         if (list.HINHANHMAU) {
-//             imageSrc = 'data:image/jpeg;base64,' + list.HINHANHMAU;
-//         }
-//         html += `<label class="colorOption">
-//                     <input type="radio" name="color" value="">
-//                     <img src="${imageSrc}" alt="${list.TENMAU}">
-//                     <h6 class="nameColor">${list.TENMAU}</h6>
-//                  </label>`;
-//     }
-//     $(".containerColorRadioButton").html(html);
-// }
-// MAUMATHANG - end
-
-
-// SANPHAMTUONGTU - start
-// function builds_SANPHAMTUONGTU() {
-//     var dataSend = {
-//     }
-//     queryData_GET("http://localhost:1408/CosmeticsShop/php/api_get_mathangtuongtu.php", dataSend, function (res) {
-//         buildsHTML_SANPHAMTUONGTU(res);
-//     });
-// }
-
-// function buildsHTML_SANPHAMTUONGTU(res) {
-
-//     var data = res.tuongtu;
-//     var html = '';
-
-//     for (var item in data) {
-//         var list = data[item];
-//         var imageSrc = '';
-//         if (list.HINHANH) {
-//             imageSrc = 'data:image/jpeg;base64,' + list.HINHANH;
-//         }
-//         html += `<div class="product">
-//                 <div class="cat-item">
-//                     <a href="" class="position-relative overflow-hidden mb-3">
-//                         <img class="img-fluid" src="${imageSrc}" alt="">
-//                     </a>
-//                     <div style="justify-content: center; display: flex;">
-//                         <h6 class="" style = "margin: 10px">${list.TENMH}</h6>
-//                     </div>
-//                     <div style="justify-content: center; display: flex; margin-top: 20px;">
-//                         <h6 class="newProductsPrice">${list.GIA} ${list.ĐVT}</h6>
-//                     </div>
-//                 </div>
-//             </div>`;
-//     }
-//     $(".containerSimilarProducts").html(html);
-// }
-// SANPHAMTUONGTU - end

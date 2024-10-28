@@ -1,14 +1,11 @@
 <?php
 require_once(__DIR__ . "/../server.php");
 
-// Lấy dữ liệu từ POST
 $mamh = $_POST['MAMH'];
 
-// Tạo mảng để lưu các cột cần cập nhật
 $updates = [];
 $params = [];
 
-// Kiểm tra xem có dữ liệu cần cập nhật không
 if (!empty($_POST['MANHOMMH'])) {
     $updates[] = "manhommh = ?";
     $params[] = $_POST['MANHOMMH'];
@@ -44,7 +41,6 @@ if (!empty($_POST['ĐVT'])) {
     $params[] = $_POST['ĐVT'];
 }
 
-// Kiểm tra xem có file hình ảnh trong request không
 if (isset($_FILES['HINHANH']) && $_FILES['HINHANH']['error'] === UPLOAD_ERR_OK) {
     $tmpFilePath = $_FILES['HINHANH']['tmp_name'];
     $hinhanh = addslashes(file_get_contents($tmpFilePath));
@@ -52,30 +48,26 @@ if (isset($_FILES['HINHANH']) && $_FILES['HINHANH']['error'] === UPLOAD_ERR_OK) 
     $params[] = $hinhanh;
 }
 
-// Kiểm tra xem có bất kỳ trường nào cần cập nhật không
 if (count($updates) > 0) {
-    // Tạo câu lệnh SQL update
     $sql = "UPDATE mathang SET " . implode(", ", $updates) . " WHERE mamh = ?";
     $stmt = $conn->prepare($sql);
 
-    // Thêm mã mặt hàng vào cuối mảng params
     $params[] = $mamh;
 
-    // Xây dựng các kiểu dữ liệu cho bind_param
-    $types = str_repeat('s', count($params) - 1) . 's'; // tất cả đều là string
+    $types = str_repeat('s', count($params) - 1) . 's';
     $stmt->bind_param($types, ...$params);
 
     if ($stmt->execute()) {
         if ($stmt->affected_rows > 0) {
-            $res["success"] = 1; // Cập nhật thành công
+            $res["success"] = 1;
         } else {
-            $res["success"] = 0; // Không có dòng nào bị ảnh hưởng
+            $res["success"] = 0;
         }
     } else {
-        $res["success"] = 0; // Lỗi khi thực thi câu lệnh SQL
+        $res["success"] = 0;
     }
 } else {
-    $res["success"] = 3; // Không có trường nào cần cập nhật
+    $res["success"] = 3;
 }
 
 echo json_encode($res);

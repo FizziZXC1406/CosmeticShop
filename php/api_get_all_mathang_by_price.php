@@ -64,7 +64,7 @@ if ($dau == 'greaterThan') {
 $rs = mysqli_query($conn, $sql);
 
 if (!$rs) {
-    echo json_encode(array('error' => mysqli_error($conn))); // Gửi thông báo lỗi nếu truy vấn không thành công
+    echo json_encode(array('error' => mysqli_error($conn)));
     exit();
 }
 
@@ -81,7 +81,7 @@ while ($rows = mysqli_fetch_array($rs)) {
     $usertemp['GIA'] = $rows["GIA"];
     $usertemp['ĐVT'] = $rows["ĐVT"];
     $usertemp['HINHANH'] = base64_encode($rows["HINHANH"]);
-    $usertemp['TONGSOLUONG'] = $rows["TONGSOLUONG"]; // Lấy tổng số lượng
+    $usertemp['TONGSOLUONG'] = $rows["TONGSOLUONG"];
     array_push($mang, $usertemp);
 }
 

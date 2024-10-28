@@ -1,10 +1,8 @@
 <?php
 require_once(__DIR__ . "/../server.php");
 
-// Lấy dữ liệu từ POST
 $mamh = $_POST['MAMH'];
 
-// Kiểm tra xem mã mặt hàng có tồn tại không
 $stmt = $conn->prepare("SELECT COUNT(*) AS total FROM mathang WHERE mamh = ?");
 $stmt->bind_param("s", $mamh);
 $stmt->execute();
@@ -12,21 +10,20 @@ $result = $stmt->get_result();
 $row = $result->fetch_array();
 
 if ((int)$row['total'] > 0) {
-    // Nếu tồn tại, thực hiện câu lệnh DELETE
     $stmt = $conn->prepare("DELETE FROM mathang WHERE mamh = ?");
     $stmt->bind_param("s", $mamh);
     
     if ($stmt->execute()) {
         if ($stmt->affected_rows > 0) {
-            $res["success"] = 1; // Xóa thành công
+            $res["success"] = 1;
         } else {
-            $res["success"] = 0; // Không có dòng nào bị ảnh hưởng
+            $res["success"] = 0;
         }
     } else {
-        $res["success"] = 0; // Lỗi khi thực thi câu lệnh SQL
+        $res["success"] = 0;
     }
 } else {
-    $res["success"] = 2; // Mã mặt hàng không tồn tại
+    $res["success"] = 2;
 }
 
 echo json_encode($res);

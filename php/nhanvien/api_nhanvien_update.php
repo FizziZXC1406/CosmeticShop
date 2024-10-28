@@ -1,14 +1,11 @@
 <?php
 require_once(__DIR__ . "/../server.php");
 
-// Lấy dữ liệu từ POST
 $manv = $_POST['MANV'];
 
-// Tạo mảng để lưu các cột cần cập nhật
 $updates = [];
 $params = [];
 
-// Kiểm tra xem có dữ liệu cần cập nhật không
 if (!empty($_POST['HOTEN'])) {
     $updates[] = "hoten = ?";
     $params[] = $_POST['HOTEN'];
@@ -59,30 +56,26 @@ if (!empty($_POST['MACV'])) {
     $params[] = $_POST['MACV'];
 }
 
-// Kiểm tra xem có bất kỳ trường nào cần cập nhật không
 if (count($updates) > 0) {
-    // Tạo câu lệnh SQL update
     $sql = "UPDATE nhanvien SET " . implode(", ", $updates) . " WHERE manv = ?";
     $stmt = $conn->prepare($sql);
 
-    // Thêm mã nhân viên vào cuối mảng params
     $params[] = $manv;
 
-    // Xây dựng các kiểu dữ liệu cho bind_param
-    $types = str_repeat('s', count($params) - 1) . 's'; // tất cả đều là string
+    $types = str_repeat('s', count($params) - 1) . 's';
     $stmt->bind_param($types, ...$params);
 
     if ($stmt->execute()) {
         if ($stmt->affected_rows > 0) {
-            $res["success"] = 1; // Cập nhật thành công
+            $res["success"] = 1;
         } else {
-            $res["success"] = 0; // Không có dòng nào bị ảnh hưởng
+            $res["success"] = 0;
         }
     } else {
-        $res["success"] = 0; // Lỗi khi thực thi câu lệnh SQL
+        $res["success"] = 0;
     }
 } else {
-    $res["success"] = 3; // Không có trường nào cần cập nhật
+    $res["success"] = 3;
 }
 
 echo json_encode($res);
