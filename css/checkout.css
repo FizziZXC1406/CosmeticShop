@@ -1,0 +1,57 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-container {
+    display: flex;
+    font-size: 14px;
+}
+
+.navbar {
+    margin: auto;
+    display: flex;
+    gap: 2rem;
+    background: #fff;
+    border-radius: 15px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link, .dropdown-item li {
+    list-style: none;
+    height: 100%;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+
+.dropdown-item {
+    position: absolute;
+    padding: 20px;
+    background-color: antiquewhite;
+    color: black;
+    border-radius: 15px;
+    display: none;
+}
+
+.nav-link:hover {
+    background-color: black;
+    border-radius: 15px;
+    color: white;
+}
+
+.more:hover .dropdown-item {
+    display: block;
+}
+
+.dropdown-item li:hover {
+    background-color: white;
+    color: black;
+}

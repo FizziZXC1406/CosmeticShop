@@ -1,0 +1,139 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    min-width: 900px;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.col-left {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px 0 0 15px;
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+.welcome {
+    font-weight: 600;
+    color: #B35B5B;
+    text-align: center;
+    margin-bottom: 30px;
+    border: 2px solid #B35B5B;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.input-group {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.input-group label {
+    font-weight: 600;
+}
+
+.forgotPassword-container {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.forgotPassword-container a {
+    color: #e97fa5;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.sign-btn,
+.google-btn {
+    height: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    background-color: #B35B5B;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+
+.sign-btn a,
+.google-btn a {
+    width: 100%;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 13px;
+    color: white;
+}
+
+.sign-btn:hover {
+    background-color: #41aea7;
+}
+
+.signupForm-link {
+    color: #965cc1;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signupForm-link a {
+    margin-left: 15px;
+    font-size: small;
+    color: #965cc1;
+}
+
+.signupForm-link h6 {
+    margin-block-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.col-right {
+    background: linear-gradient(45deg, #c44569, white);
+    border-radius: 0 15px 15px 0;
+    min-width: 300px;
+}
+
+.imagebg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.imagebg img {
+    width: 150px;
+    height: 250px;
+    border-radius: 15px;
+    margin: 0 10px;
+}
